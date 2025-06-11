@@ -1,0 +1,16 @@
+{
+  "name": "interviewer-db",
+  "version": "1.0.0",
+  "prisma": {
+    "seed": "tsx seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "latest",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "prisma": "latest",
+    "tsx": "^4.7.1"
+  }
+}
