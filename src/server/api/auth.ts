@@ -1,4 +1,4 @@
-import { Router, RequestHandler } from 'express';
+import { Router, Request, Response } from 'express';
 import pool from '../../lib/db';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 const router = Router();
 
 // Register endpoint
-router.post('/register', (async (req, res) => {
+const registerHandler: RequestHandler = async (req, res) => {
   try {
     const { email, password, name, linkedinUrl } = req.body;
     console.log('Registration attempt for:', email);
@@ -73,10 +73,10 @@ router.post('/register', (async (req, res) => {
       error: error instanceof Error ? error.message : 'Unknown error'
     });
   }
-}) as RequestHandler);
+};
 
 // Login endpoint
-router.post('/login', (async (req, res) => {
+const loginHandler: RequestHandler = async (req, res) => {
   try {
     const { email, password } = req.body;
     console.log('Login attempt for email:', email);
@@ -115,10 +115,10 @@ router.post('/login', (async (req, res) => {
     }
     res.status(500).json({ message: 'Internal server error' });
   }
-}) as RequestHandler);
+};
 
 // Google authentication endpoint
-router.post('/google', (async (req, res) => {
+const googleAuthHandler: RequestHandler = async (req, res) => {
   try {
     const { credential } = req.body;
 
@@ -151,10 +151,10 @@ router.post('/google', (async (req, res) => {
     console.error('Google auth error:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
-}) as RequestHandler);
+};
 
 // Interviewer Login endpoint
-router.post('/interviewer/login', (async (req, res) => {
+const interviewerLoginHandler: RequestHandler = async (req, res) => {
   try {
     const { email, password } = req.body;
     console.log('Interviewer login attempt for:', email);
@@ -202,6 +202,11 @@ router.post('/interviewer/login', (async (req, res) => {
     }
     res.status(500).json({ message: 'Internal server error' });
   }
-}) as RequestHandler);
+};
 
-export default router; 
+router.post('/register', registerHandler);
+router.post('/login', loginHandler);
+router.post('/google', googleAuthHandler);
+router.post('/interviewer/login', interviewerLoginHandler);
+
+export default router;

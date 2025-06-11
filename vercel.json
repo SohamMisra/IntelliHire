@@ -9,7 +9,8 @@
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist"
+        "distDir": "dist",
+        "zeroConfig": true
       }
     }
   ],
@@ -19,8 +20,26 @@
       "dest": "src/server/index.ts"
     },
     {
+      "src": "^/assets/(.*)\\.(.+)$",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable",
+        "content-type": "application/javascript; charset=utf-8"
+      },
+      "continue": true
+    },
+    {
+      "src": "^/(.*)\\.(.+)$",
+      "headers": { 
+        "cache-control": "public, max-age=31536000, immutable" 
+      },
+      "continue": true
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/index.html"
     }
   ]
 }
