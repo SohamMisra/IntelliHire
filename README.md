@@ -159,12 +159,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Zero-Downtime Deployments**: Blue-green deployment strategy
 - **99.9% Platform Uptime**: Robust error handling and redundancy
 
-## 👨‍💻 Author
 
-**Soham Misra** - Full-Stack Developer & AI/ML Enthusiast
 
----
-
-### Last Updated: 2026-04-03 19:44:18
-
-Made with 🚀 by Soham Misra
+Made with 🚀 
